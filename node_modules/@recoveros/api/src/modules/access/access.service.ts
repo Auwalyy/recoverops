@@ -178,6 +178,12 @@ export async function assertPatientRelationship(
       if (!grant.permissions.has(permission)) {
         throw new AppError('CONSENT_REQUIRED', 'The patient has not granted you access to this information');
       }
+      // Caregiver access history (visible to the patient) — once per request per patient.
+      const key = `cgaudit:${String(patientId)}:${permission}`;
+      if (!p.cache.has(key)) {
+        p.cache.set(key, true);
+        await audit({ action: 'CAREGIVER_ACCESS', resourceType: episode ? 'RecoveryEpisode' : 'Patient', resourceId: episode ? String(episode._id) : String(patientId), patientId: String(patientId), metadata: { permission, consentId: grant.consentId } });
+      }
       return;
     }
     case 'STAFF': {

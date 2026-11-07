@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "RecoverOS",
+    "slug": "recoveros",
+    "scheme": "recoveros",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "backgroundColor": "#F5F8FA",
+    "ios": {
+      "bundleIdentifier": "health.recoveros.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "RecoverOS uses the camera so you can share wound photos with your care team when you choose to.",
+        "NSPhotoLibraryUsageDescription": "RecoverOS lets you attach photos to symptom reports when you choose to."
+      }
+    },
+    "android": {
+      "package": "health.recoveros.app",
+      "adaptiveIcon": { "foregroundImage": "./assets/adaptive-icon.png", "backgroundColor": "#0D6E63" },
+      "permissions": ["CAMERA", "POST_NOTIFICATIONS"],
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"],
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-secure-store",
+      ["expo-sqlite", { "useSQLCipher": true }],
+      "expo-localization",
+      ["expo-splash-screen", { "image": "./assets/splash-icon.png", "imageWidth": 160, "backgroundColor": "#0D6E63" }],
+      "expo-web-browser",
+      ["expo-notifications", { "color": "#0D6E63" }],
+      ["expo-image-picker", { "photosPermission": "RecoverOS lets you attach photos to symptom reports when you choose to.", "cameraPermission": "RecoverOS uses the camera so you can share wound photos with your care team when you choose to." }]
+    ],
+    "experiments": { "typedRoutes": false },
+    "extra": { "apiUrl": "http://10.0.2.2:4000" }
+  }
+}

@@ -19,7 +19,8 @@ export const SubscriptionPlanModel = model('SubscriptionPlan', subscriptionPlanS
 
 const subscriptionSchema = createSchema(
   {
-    ...tenantField,
+    // One subscription per hospital (unique tenant index).
+    hospitalId: { ...tenantField.hospitalId, unique: true },
     planCode: { type: String, required: true },
     status: { type: String, enum: SUBSCRIPTION_STATUSES, required: true, index: true },
     trialEndsAt: Date,
@@ -33,7 +34,6 @@ const subscriptionSchema = createSchema(
   },
   { tenant: true },
 );
-subscriptionSchema.index({ hospitalId: 1 }, { unique: true });
 export type Subscription = InferSchemaType<typeof subscriptionSchema>;
 export type SubscriptionDocument = HydratedDocument<Subscription>;
 export const SubscriptionModel = model('Subscription', subscriptionSchema);

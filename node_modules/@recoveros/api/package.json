@@ -11,6 +11,7 @@
     "start": "node dist/server.js",
     "start:worker": "node dist/worker.js",
     "seed": "tsx --env-file-if-exists=../../.env src/database/seed/seed.ts",
+    "db:memory": "tsx scripts/dev-memory-db.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "test:watch": "vitest"

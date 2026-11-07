@@ -4,7 +4,7 @@ import { createSchema, ref, tenantField } from '../../database/schema';
 
 /** Caregiver profile — a person (User) acting as caregiver for one or more patients. */
 const caregiverSchema = createSchema({
-  userId: { ...ref('User'), index: true },
+  userId: ref('User'),
   name: { type: String, required: true },
   email: { type: String, lowercase: true },
   phone: String,

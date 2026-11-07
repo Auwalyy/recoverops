@@ -1,0 +1,9 @@
+**/node_modules
+**/dist
+**/.expo
+apps/mobile
+apps/api/.mongo-data
+apps/api/.storage*
+.git
+.env
+*.log
