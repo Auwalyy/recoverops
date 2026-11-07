@@ -1,0 +1,25 @@
+{
+  "name": "recoveros",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RecoverOS — hospital-connected recovery coordination and post-discharge management platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @recoveros/shared && npm run build -w @recoveros/api",
+    "build:shared": "npm run build -w @recoveros/shared",
+    "dev:api": "npm run build:shared && npm run dev -w @recoveros/api",
+    "dev:worker": "npm run build:shared && npm run dev:worker -w @recoveros/api",
+    "dev:mobile": "npm run start -w @recoveros/mobile",
+    "seed": "npm run build:shared && npm run seed -w @recoveros/api",
+    "test": "npm run build:shared && npm run test -w @recoveros/shared && npm run test -w @recoveros/api",
+    "test:mobile": "npm run test -w @recoveros/mobile",
+    "typecheck": "npm run build:shared && npm run typecheck -w @recoveros/api && npm run typecheck -w @recoveros/mobile",
+    "audit:deps": "npm audit --omit=dev"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}
